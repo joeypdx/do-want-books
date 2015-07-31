@@ -22,12 +22,13 @@ def main():
     Look up a book at archive.org to see if they need it for their collection.
     """
     parser = argparse.ArgumentParser(description=textwrap.dedent(description))
-#group = parser.add_mutually_exclusive_group()
-#group.add_argument("-i", "--isbn", dest="isbn", help="Look up by ISBN (10 or 13 digit format)", action="store")
-#group.add_argument("-t", "--title", dest="title", help="Look up by title (must be in double quotes)", action="store")
-    parser.add_argument("-i", "--isbn", dest="isbn", help="Look up by ISBN (10 or 13 digit format)", action="store")
-    parser.add_argument("-t", "--title", dest="title", help="Look up by title (must be in double quotes)", action="store")
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument("-i", "--isbn", dest="isbn", help="Look up by ISBN (10 or 13 digit format)", action="store")
+    group.add_argument("-t", "--title", dest="title", help="Look up by title (must be in double quotes)", action="store")
     args = parser.parse_args()
+#    parser.add_argument("-i", "--isbn", dest="isbn", help="Look up by ISBN (10 or 13 digit format)", action="store")
+#    parser.add_argument("-t", "--title", dest="title", help="Look up by title (must be in double quotes)", action="store")
+#    args = parser.parse_args()
 # make the user give you either an ISBN or a title - empty argument should return the usage statement 
     if len(sys.argv)==1:
         parser.print_usage()
