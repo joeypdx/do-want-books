@@ -15,15 +15,23 @@ Desired functionality:
 
 import sys
 import argparse
+import textwrap
 
-parser = argparse.ArgumentParser(description='Look up a book at archive.org to see if they need it for their collection.')
+def main():
+    description="""\
+    Look up a book at archive.org to see if they need it for their collection.
+    """
+    parser = argparse.ArgumentParser(description=textwrap.dedent(description))
 #group = parser.add_mutually_exclusive_group()
 #group.add_argument("-i", "--isbn", dest="isbn", help="Look up by ISBN (10 or 13 digit format)", action="store")
 #group.add_argument("-t", "--title", dest="title", help="Look up by title (must be in double quotes)", action="store")
-parser.add_argument("-i", "--isbn", dest="isbn", help="Look up by ISBN (10 or 13 digit format)", action="store")
-parser.add_argument("-t", "--title", dest="title", help="Look up by title (must be in double quotes)", action="store")
-# TO DO: make the user give you either an ISBN or a title - you should 
-#    if len(sys.argv)==1:
-#        parser.print_usage()
-#        sys.exit(1)
+    parser.add_argument("-i", "--isbn", dest="isbn", help="Look up by ISBN (10 or 13 digit format)", action="store")
+    parser.add_argument("-t", "--title", dest="title", help="Look up by title (must be in double quotes)", action="store")
+    args = parser.parse_args()
+# make the user give you either an ISBN or a title - empty argument should return the usage statement 
+    if len(sys.argv)==1:
+        parser.print_usage()
+        sys.exit(1)
 
+if __name__ == "__main__":
+    main()
